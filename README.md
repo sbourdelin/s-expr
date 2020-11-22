@@ -28,17 +28,20 @@ Options:
 ```
 
 ## Full cross-compile exemple for ARM with Qemu
-First you need to install qemu-arm, it depends on your Linux distro
+First you need to install **qemu-arm**, it depends on your Linux distribution.
 
-Then download the bootlin toolchain for armv6:
+Then download an arm toolchain, i'm using the bootlin toolchain for armv6 available here:
 https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--glibc--stable-2020.08-1.tar.bz2
 
-Extract it then before compiling the project, do the following:
+Extract the toolchain, then before compiling the project, do the following:
 ```bash
 ARCH=arm
 PATH=/path_to_your_extracted_toolchain/armv6-eabihf--glibc--stable-2020.08-1/bin/:$PATH
 CROSS_COMPILE=arm-linux-
 LD_LIBRARY_PATH=/path_to_your_extracted_toolchain/armv6-eabihf--glibc--stable-2020.08-1/arm-buildroot-linux-gnueabihf/sysroot/
+```
 
+You can now invoked the program with the following command:
+```bash
 qemu-arm -L $LD_LIBRARY_PATH ./sexpr
 ```
